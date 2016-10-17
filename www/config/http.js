@@ -89,5 +89,5 @@ module.exports.http = {
   *                                                                          *
   ***************************************************************************/
 
-  // cache: 31557600000
+  cache: 1 // Server was caching files so changes weren't propagating, so setting short cache.
 };

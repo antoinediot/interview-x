@@ -14,4 +14,15 @@ I administer a soccer league and I'd like a web application to track team names 
 
 # Initial Setup
 
-1. Execute populate-database.sql to populate lookup values. 
+1. Execute populate-database.sql to populate lookup values.
+2. Install bower components.  
+*Run the bower command in the **www/assets** directory.*
+```
+> bower install
+```
+3. Run grunt
+*Run the grunt command in the **www** directory.*
+```
+> npm install -g grunt
+> grunt
+```

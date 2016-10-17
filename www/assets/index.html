@@ -1,0 +1,43 @@
+<!doctype html>
+<html ng-app="leagueApp">
+
+<head>
+	<title>Tallahassee Soccer League</title>
+
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="styles/app.css">
+
+</head>
+
+<body>
+	<nav class="navbar navbar-light bg-faded">
+		<div class="container">
+			<a class="navbar-brand" href="#">Tallahassee Soccer League</a>
+			<ul class="nav navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Teams</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div ng-view></div>
+	</div>
+
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="bower_components/tether/dist/js/tether.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/sails.io.js/dist/sails.io.js"></script>
+	<script src="bower_components/angular-sails/dist/angular-sails.js"></script>
+
+	<script src="app/leagueModule.js"></script>
+	<script src="app/teams/teamControllers.js"></script>
+
+</body>
+
+</html>

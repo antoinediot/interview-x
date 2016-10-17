@@ -1,0 +1,39 @@
+<h1>Teams</h1>
+
+<div class="row">
+	<div class="col-xs-12 col-md-6">
+		<table class="table">
+			<tr ng-repeat="team in teams | orderBy:'name'">
+
+				<!-- Display mode -->
+				<td ng-hide="team.editMode">{{team.name}}</td>
+				<td ng-hide="team.editMode">
+					<button class="btn btn-sm" ng-click="editTeam(team)"><span class="fa fa-pencil"></span></button>
+					<button class="btn btn-sm" ng-click="deleteTeam(team)"><span class="fa fa-times"></span></button>
+				</td>
+
+				<!-- Edit mode -->
+				<form>
+				<td ng-show="team.editMode">
+					<input type="text" class="form-control form-control-sm" ng-model="team.nameEdit" required />
+				</td>
+				<td ng-show="team.editMode">
+					<button type="submit" class="btn btn-sm" ng-click="applyEditTeam(team)">Apply</button>
+					<button class="btn btn-sm" ng-click="cancelEditTeam(team)">Cancel</button>
+				</td>
+				</form>
+			</tr>
+		</table>
+	</div>
+	<div class="col-xs-12 col-md-6">
+		<h3>Add Team</h3>
+		<form id="addTeamForm" class="form-inline">
+			<div class="form-group">
+				<label for="addTeamName">Name</label>
+				<input type="text" class="form-control" id="addTeamName" placeholder="" ng-model="addTeamName" required />
+			</div>
+			<button type="submit" class="btn btn-primary" ng-click="addTeam()">Add</button>
+		</form>
+
+	</div>
+</div>
