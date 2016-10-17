@@ -11,3 +11,7 @@ I administer a soccer league and I'd like a web application to track team names 
 * Project needs to be created using node.js with MySQL backend and Angular 1.* frontend
 * Please make at least 3 commits to github
 * Optional: host your website and database with AWS
+
+# Initial Setup
+
+1. Execute populate-database.sql to populate lookup values. 
