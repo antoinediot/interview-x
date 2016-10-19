@@ -1,38 +1,48 @@
 <h1>Add Match
 </h1>
 
-<form>
+<form class="add-match-form">
 
 	<div class="form-group">
 		<label for="matchDay">Date</label>
-		<input type="date" class="form-control" id="matchDay" ng-model="match.date" />
+		<input type="date" class="form-control" id="matchDay" ng-model="match.date" required />
 	</div>
 
-	<div class="form-group">
-		<label for="team1">Team 1</label>
-		<select class="form-control" id="team1" ng-model="team1.team" ng-options="team as team.name for team in teams track by team.id" required>
+	<div class="form-inline">
+
+		<div class="form-group">
+			<label for="team1">Team 1</label>
+			<select class="form-control" id="team1" ng-model="team1.team" ng-options="team as team.name for team in teams track by team.id"
+				required="true">
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="team1Score">Score</label>
+			<input type="number" class="form-control score-control" id="team1Score" ng-model="team1.score" min="0" required/>
+		</div>
+
+	</div>
+
+	<div class="form-inline">
+
+		<div class="form-group">
+			<label for="team2">Team 2</label>
+			<select class="form-control" id="team2" ng-model="team2.team" ng-options="team as team.name for team in teams track by team.id"
+				required="true">
         </select>
+		</div>
+
+		<div class="form-group">
+			<label for="team2Score">Score</label>
+			<input type="number" class="form-control score-control" id="team2Score" ng-model="team2.score" min="0" required />
+		</div>
+
 	</div>
 
-	<div class="form-group">
-		<label for="team1Score">Score</label>
-		<input type="number" class="form-control" id="team1Score" ng-model="team1.score" />
+	<div>
+		<button type="submit" class="btn btn-primary" ng-click="save()">Submit</button>
+		<a class="btn btn-secondary" ng-href="#!/matches">Cancel</a>
 	</div>
 
-	<div class="form-group">
-		<label for="team2">Team 2</label>
-		<select class="form-control" id="team2" ng-model="team2.team" ng-options="team as team.name for team in teams track by team.id" required>
-        </select>
-	</div>
-
-	<div class="form-group">
-		<label for="team2Score">Score</label>
-		<input type="number" class="form-control" id="team2Score" ng-model="team2.score" />
-	</div>
-
-    <div>
-        <button type="submit" class="btn btn-primary" ng-click="save()">Submit</button>
-        <a class="btn btn-secondary" ng-href="#!/matches">Cancel</a>
-    </div>
-    
 </form>
