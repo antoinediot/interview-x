@@ -1,3 +1,30 @@
 <h1>Standings</h1>
 
-<p>Standings go here ...</p>
+<table class='table table-responsive standings-table'>
+	<thead>
+		<tr>
+			<th>Team</th>
+			<th>PTS</th>
+			<th>GP</th>
+			<th>W</th>
+			<th>D</th>
+			<th>L</th>
+			<th>GS</th>
+			<th>GA</th>
+			<th>GD</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="team in standings | orderBy:'points':true">
+			<th>{{team.name}}</th>
+			<td>{{team.points}}</td>
+			<td>{{team.matchesplayed}}</td>
+			<td>{{team.wins}}</td>
+			<td>{{team.draws}}</td>
+			<td>{{team.losses}}</td>
+			<td>{{team.goals}}</td>
+			<td>{{team.goalsagainst}}</td>
+			<td>{{team.goals - team.goalsagainst}}</td>
+		</tr>
+	</tbody>
+</table>

@@ -26,13 +26,13 @@
             '$sails',
             function ($scope, $sails) {
 
-                // $sails
-                // .post("/match/getStandings")
-                // .success(function (response) {
-                //     $scope.standings = response;
-                // }).error(function (response) {
-                //     console.log('error', response);
-                // });
+                $sails
+                .get("/standings/getStandings")
+                .success(function (response) {
+                    $scope.standings = response;
+                }).error(function (response) {
+                    console.log('error', response);
+                });
             }
         ]
     );

@@ -1,3 +1,3 @@
-insert into interviewx.lookupresult (id, description) values ('W', 'Win');
-insert into interviewx.lookupresult (id, description) values ('L', 'Loss');
-insert into interviewx.lookupresult (id, description) values ('D', 'Draw');
+insert into interviewx.lookupresult (id, description, points) values ('W', 'Win', 3);
+insert into interviewx.lookupresult (id, description, points) values ('L', 'Loss', 1);
+insert into interviewx.lookupresult (id, description, points) values ('D', 'Draw', 0);

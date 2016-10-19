@@ -18,6 +18,10 @@ module.exports = {
       type: 'string',
       required: true,
       size: 32
+    },
+    points: {
+      type: 'integer',
+      required: true
     }
   }
 };
