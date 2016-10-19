@@ -20,7 +20,7 @@ I administer a soccer league and I'd like a web application to track team names 
 
 3. In the *www* directory, install Node packages.
 ```
-www> node install
+www> npm install
 ```
 
 4. In the *www/assets* directory, install and run Bower.
@@ -39,6 +39,6 @@ www> grunt
 www> sails lift
 ```
 
-7. Execute populate-database.sql to populate lookup values.
+7. Execute *scripts/populate-database.sql* to populate lookup values.
 
 8. Visit the web application at [http://localhost:1337/](http://localhost:1337/).
