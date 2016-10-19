@@ -10,17 +10,17 @@ module.exports = {
 
         // Create match team records.
         var params = req.allParams(),
-        matchTeam1 = {
-            team: params.team1,
-            score: params.team1score
-        },
-        matchTeam2 = {
-            team: params.team2,
-            score: params.team2score
-        },
-        match = {
-            date: params.date
-        };
+            matchTeam1 = {
+                team: params.team1,
+                score: params.team1score
+            },
+            matchTeam2 = {
+                team: params.team2,
+                score: params.team2score
+            },
+            match = {
+                date: params.date
+            };
 
         if (matchTeam1.score > matchTeam2.score) {
             matchTeam1.result = 'W';
@@ -35,30 +35,40 @@ module.exports = {
             console.error('Result calculation unreachable code!')
         }
 
-        sails.models.match.create(match, function(err, results) {
-            if (err) {
-                console.error(err);
-            } else {
-                matchTeam1.match = results.id;
-                matchTeam2.match = results.id;
+        // First create the match.
+        sails.models.match
+            .create(match)
+            .then(function (match) {
 
-                sails.models.matchteam.create(matchTeam1, function(err, results) {
-                    if (err) {
-                        console.error(err);
-                    }
-                });
+                // Associate the match teams with the match.
+                matchTeam1.match = match.id;
+                matchTeam2.match = match.id;
 
-                sails.models.matchteam.create(matchTeam2, function(err, results) {
-                    if (err) {
-                        console.error(err);
-                    }
-                });
-            }
-        });
+                // Create the first match team.
+                sails.models.matchteam
+                    .create(matchTeam1)
+                    .then(function () {
 
-        return res.json({
-            todo: 'Done!'
-        });
+                        // Create the second match team.
+                        sails.models.matchteam
+                            .create(matchTeam2)
+                            .then(function () {
+                                return res.status(200).send('Match created.');
+                            })
+                            .fail(function (reason) {
+                                console.error(reason);
+                                return res.status(500).send(reason);
+                            });
+                    })
+                    .fail(function (reason) {
+                        console.error(reason);
+                        return res.status(500).send(reason);
+                    });
+            })
+            .fail(function (reason) {
+                console.error(reason);
+                return res.status(500).send(reason);
+            });
     }
 };
 
