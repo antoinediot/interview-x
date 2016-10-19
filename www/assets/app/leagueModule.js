@@ -7,7 +7,8 @@
         'ngSails',
         'leagueApp.teams',
         'leagueApp.matches',
-        'leagueApp.standings'
+        'leagueApp.standings',
+        'leagueApp.security'
     ]);
 
     leagueApp.config([
