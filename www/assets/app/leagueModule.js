@@ -5,7 +5,8 @@
     var leagueApp = angular.module('leagueApp', [
         'ngRoute',
         'ngSails',
-        'leagueApp.teams'
+        'leagueApp.teams',
+        'leagueApp.matches'
     ]);
 
     leagueApp.config([

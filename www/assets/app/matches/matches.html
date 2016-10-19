@@ -1,0 +1,14 @@
+<h1>Matches</h1>
+
+<p>
+	<a ng-href="#!/matches/add" class="btn btn-primary">Add Match</a>
+</p>
+
+<div class="card" ng-repeat="match in matches">
+	<div class="card-header">
+		{{match.date | date:'MMM d yyyy'}}
+	</div>
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item" ng-repeat="team in match.teams">{{team.name}}</li>
+	</ul>
+</div>
