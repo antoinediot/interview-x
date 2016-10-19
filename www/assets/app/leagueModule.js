@@ -6,7 +6,8 @@
         'ngRoute',
         'ngSails',
         'leagueApp.teams',
-        'leagueApp.matches'
+        'leagueApp.matches',
+        'leagueApp.standings'
     ]);
 
     leagueApp.config([
@@ -16,7 +17,7 @@
 
             $locationProvider.hashPrefix('!');
 
-            $routeProvider.otherwise({ redirectTo: '/teams' });
+            $routeProvider.otherwise({ redirectTo: '/standings' });
         }]
     );
 
