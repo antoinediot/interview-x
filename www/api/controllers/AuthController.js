@@ -21,7 +21,7 @@ module.exports = {
             if ((err) || (!user)) {
                 return res.send({
                     message: info.message,
-                    user: user
+                    user: false
                 });
             }
             req.logIn(user, function (err) {

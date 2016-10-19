@@ -1,6 +1,10 @@
 <h1>Login</h1>
 
-<form method="POST" action="/login">
+<div class="alert alert-danger" role="alert" ng-show="errorMessage">
+  {{errorMessage}}
+</div>
+
+<form>
 	<div class="form-group">
 		<label for="userEmail">Email</label>
 		<input type="email" class="form-control" name="email" id="userEmail" ng-model="email">

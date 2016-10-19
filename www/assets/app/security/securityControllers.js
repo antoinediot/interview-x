@@ -27,22 +27,29 @@
         'loginController',
         [
             '$scope',
-            '$sails',
-            function ($scope, $sails) {
+            '$http',
+            '$location',
+            function ($scope, $http, $location) {
 
-                // $scope.login = function () {
+                $scope.login = function () {
 
-                //     $sails
-                //         .post('/login', {
-                //             email: $scope.email,
-                //             password: $scope.password
-                //         })
-                //         .success(function (response) {
-                //             console.log('login successful:', response)
-                //         }).error(function (response) {
-                //             console.log('error', response);
-                //         });
-                // };
+                    $http
+                        .post('/login', {
+                            email: $scope.email,
+                            password: $scope.password
+                        })
+                        .success(function (response) {
+                            if (response.user) {
+                                console.log('login successful:', response)
+                                $location.path('/');
+                            } else {
+                                console.log('login failed:', response)
+                                $scope.errorMessage = "Authentication failed."
+                            }
+                        }).error(function (response) {
+                            console.log('error', response);
+                        });
+                };
             }
         ]
     );
