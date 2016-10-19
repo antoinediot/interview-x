@@ -10,7 +10,7 @@
 
 </head>
 
-<body>
+<body ng-controller="ApplicationController">
 	<nav class="navbar navbar-light bg-faded">
 		<div class="container">
 			<a class="navbar-brand" href="#">Tallahassee Soccer League</a>
@@ -24,8 +24,11 @@
 				<li class="nav-item">
 					<a class="nav-link" href="#!/matches">Matches</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item" ng-if="!currentUser">
 					<a class="nav-link" href="#!/security/login">Login</a>
+				</li>
+				<li class="nav-item" ng-if="currentUser">
+					<a class="nav-link" ng-click="logout()">Logout</a>
 				</li>
 			</ul>
 		</div>

@@ -3,11 +3,14 @@
     'use strict';
 
     var matchesApp = angular.module('leagueApp.matches', [
-        'ngRoute'
+        'ngRoute',
+        'leagueApp.security'
     ]);
 
-    matchesApp.config(['$routeProvider',
-        function ($routeProvider) {
+    matchesApp.config([
+        '$routeProvider',
+        'USER_ROLES',
+        function ($routeProvider, USER_ROLES) {
             $routeProvider.
                 when('/matches', {
                     templateUrl: 'app/matches/matches.html',
@@ -15,7 +18,10 @@
                 }).
                 when('/matches/add', {
                     templateUrl: 'app/matches/add-match.html',
-                    controller: 'addMatchController'
+                    controller: 'addMatchController',
+                    data: {
+                        authorizedRoles: USER_ROLES.all
+                    }
                 }).
                 otherwise({
                     redirectTo: '/matches'
@@ -31,12 +37,12 @@
             function ($scope, $sails) {
 
                 $sails
-                .post("/match/getMatches")
-                .success(function (response) {
-                    $scope.matches = response;
-                }).error(function (response) {
-                    console.log('error', response);
-                });
+                    .post("/match/getMatches")
+                    .success(function (response) {
+                        $scope.matches = response;
+                    }).error(function (response) {
+                        console.log('error', response);
+                    });
             }
         ]
     );
@@ -59,7 +65,7 @@
                 });
 
                 // Handle save.
-                $scope.save = function() {
+                $scope.save = function () {
 
                     // Build parameter list to post.
                     var params = {
