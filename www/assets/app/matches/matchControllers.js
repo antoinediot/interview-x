@@ -30,9 +30,9 @@
             '$sails',
             function ($scope, $sails) {
 
-                $sails.post("/match/find", {
-                    sort: 'date ASC'
-                }).success(function (response) {
+                $sails
+                .post("/match/getMatches")
+                .success(function (response) {
                     $scope.matches = response;
                 }).error(function (response) {
                     console.log('error', response);

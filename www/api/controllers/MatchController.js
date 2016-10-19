@@ -69,6 +69,57 @@ module.exports = {
                 console.error(reason);
                 return res.status(500).send(reason);
             });
+    },
+
+    getMatches: function (req, res) {
+
+        var matchesQuery = 'SELECT m.id as matchId, m.date, mt.score, t.id as teamId, t.name FROM `match` m'
+            + ' JOIN matchteam mt ON mt.match = m.id'
+            + ' JOIN team t ON t.id = mt.team';
+
+        try {
+            var results = sails.models.match.query(matchesQuery, function (err, results) {
+                var matches = [],
+                    index,
+                    currentMatch;
+
+                if (err) return res.serverError(err);
+
+                // For each match team returned:
+                for (index = 0; index < results.length; index++) {
+
+                    // Find the match corresponding to the current match team.
+                    currentMatch = matches.find(function(match){
+                        return match.id === results[index].matchId;
+                    });
+
+                    // If we haven't already added the current match then:
+                    if (typeof currentMatch === 'undefined') {
+                        
+                        // Create it.
+                        currentMatch = {
+                            id: results[index].matchId,
+                            date: results[index].date,
+                            teams: []
+                        };
+
+                        // Add it.
+                        matches.push(currentMatch);
+                    }
+
+                    // Add the team with result details to the match.
+                    currentMatch.teams.push({
+                        id: results[index].teamId,
+                        name: results[index].name,
+                        score: results[index].score
+                    });
+                }
+
+                return res.json(matches);
+            });
+        } catch (e) {
+            return res.send(e);
+        }
     }
 };
 
