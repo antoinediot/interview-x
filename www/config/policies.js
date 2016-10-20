@@ -33,7 +33,8 @@ module.exports.policies = {
   },
   
   MatchController: {
-    '*': 'isAuthenticated'
+    '*': 'isAuthenticated',
+    'getMatches': true
   },
 
   MatchTeamController: {
@@ -41,7 +42,8 @@ module.exports.policies = {
   },
 
   TeamController: {
-    '*': 'isAuthenticated'
+    '*': 'isAuthenticated',
+    'find': true
   },
 
   /***************************************************************************

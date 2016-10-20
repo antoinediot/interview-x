@@ -25,12 +25,12 @@
 			</tr>
 		</table>
 	</div>
-	<div class="col-xs-12 col-md-6" ng-if="currentUser">
+	<div class="col-xs-12 col-md-6" ng-show="currentUser">
 		<h3>Add Team</h3>
 		<form id="addTeamForm" class="form-inline">
 			<div class="form-group">
 				<label for="addTeamName">Name</label>
-				<input type="text" class="form-control" id="addTeamName" placeholder="" ng-model="addTeamName" required />
+				<input type="text" class="form-control" id="addTeamName" ng-model="addTeamName" required />
 			</div>
 			<button type="submit" class="btn btn-primary" ng-click="addTeam()">Add</button>
 		</form>

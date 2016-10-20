@@ -90,6 +90,7 @@
 
     securityApp.controller('ApplicationController', function (
         $scope,
+        $http,
         USER_ROLES,
         AuthService) {
 
@@ -103,6 +104,12 @@
 
         $scope.logout = function (e) {
             $scope.currentUser = null;
+            $http.post('/logout', {})
+                .success(function (response) {
+                    console.log(response);
+                }).error(function (response) {
+                    console.log('error', response);
+                });
         }
     });
 
