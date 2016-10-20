@@ -160,23 +160,6 @@
                         console.log('login failed')
                         $scope.errorMessage = "Authentication failed."
                     });
-
-                    $http
-                        .post('/login', {
-                            email: $scope.email,
-                            password: $scope.password
-                        })
-                        .success(function (response) {
-                            if (response.user) {
-                                console.log('login successful:', response)
-                                $location.path('/');
-                            } else {
-                                console.log('login failed:', response)
-                                $scope.errorMessage = "Authentication failed."
-                            }
-                        }).error(function (response) {
-                            console.log('error', response);
-                        });
                 };
             }
         ]
@@ -186,8 +169,11 @@
         'registerController',
         [
             '$scope',
+            '$rootScope',
+            '$location',
+            'AUTH_EVENTS',
             '$sails',
-            function ($scope, $sails) {
+            function ($scope, $rootScope, $location, AUTH_EVENTS, $sails) {
 
                 $scope.save = function () {
 
@@ -196,8 +182,12 @@
                             email: $scope.email,
                             password: $scope.password
                         })
-                        .success(function (response) {
-                            console.log('registration successful:', response)
+                        .success(function (user) {
+                            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                            $scope.setCurrentUser(user);
+
+                            console.log('registration successful:', user)
+                            $location.path('/');
                         }).error(function (response) {
                             console.log('error', response);
                         });
