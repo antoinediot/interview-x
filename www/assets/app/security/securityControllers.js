@@ -150,11 +150,17 @@
                     };
 
                     AuthService.login(credentials).then(function (user) {
-                        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                        $scope.setCurrentUser(user);
+                        if (user) {
+                            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                            $scope.setCurrentUser(user);
 
-                        console.log('login successful:', user)
-                        $location.path('/');
+                            console.log('login successful:', user)
+                            $location.path('/');
+                        } else {
+                            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                            console.log('login failed')
+                            $scope.errorMessage = "Authentication failed."
+                        }
                     }, function () {
                         $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
                         console.log('login failed')
@@ -183,11 +189,8 @@
                             password: $scope.password
                         })
                         .success(function (user) {
-                            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                            $scope.setCurrentUser(user);
-
                             console.log('registration successful:', user)
-                            $location.path('/');
+                            $location.path('/security/login');
                         }).error(function (response) {
                             console.log('error', response);
                         });
